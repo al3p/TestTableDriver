@@ -39,15 +39,17 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 	</Compliancies>
 
 	<Params>
+		<!-- Dummy param for startup sequence -->
 		<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
 		</Param>
 		
+		<!-- Table definition starts .............................................. -->
 		<Param id="100">
-			<Name>eventsOverview</Name>
-			<Description>Table of events</Description>
+			<Name>tblEventsOverview</Name>
+			<Description>Events Overview</Description>
 			<Type>array</Type>
 			<ArrayOptions index="0" options=";naming=/102">
 				<ColumnOption idx="0" pid="101" type="retrieved" options=""/>
@@ -59,15 +61,22 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Information>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
 			</Display>
 			<Measurement>
 				<Type options="tab=columns:101|0-102|1-103|2,width:100-100-100,sort:STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		
-		
+		<!-- first column -->
 		<Param id="101" trending="false">
-			<Name>eventsOverviewInstance</Name>
+			<Name>colEventsOverviewInstance</Name>
 			<Description>Instance (Events Overview)</Description>
 			<Type>read</Type>
 			<Information>
@@ -85,8 +94,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="201">
-			<Name>eventsOverviewInstance</Name>
+		<Param id="201" setter="true">
+			<Name>colEventsOverviewInstance</Name>
 			<Description>Instance (Events Overview)</Description>
 			<Type>write</Type>
 			<Interprete>
@@ -102,8 +111,9 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Measurement>
 		</Param>
 		
+		<!-- second column -->
 		<Param id="102" trending="false">
-			<Name>eventsOverviewName</Name>
+			<Name>colEventsOverviewName</Name>
 			<Description>Name [IDX] (Events Overview)</Description>
 			<Type>read</Type>
 			<Information>
@@ -121,8 +131,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="202">
-			<Name>eventsOverviewName</Name>
+		<Param id="202" setter="true">
+			<Name>colEventsOverviewName</Name>
 			<Description>Name [IDX] (Events Overview)</Description>
 			<Type>write</Type>
 			<Interprete>
@@ -138,8 +148,9 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Measurement>
 		</Param>
 		
+		<!-- third last column -->
 		<Param id="103" trending="false">
-			<Name>eventsOverviewStatus</Name>
+			<Name>colEventsOverviewStatus</Name>
 			<Description>Status (Events Overview)</Description>
 			<Type>read</Type>
 			<Information>
@@ -181,8 +192,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="203">
-			<Name>eventsOverviewStatus</Name>
+		<Param id="203" setter="true">
+			<Name>colEventsOverviewStatus</Name>
 			<Description>Status (Events Overview)</Description>
 			<Type>write</Type>
 			<Interprete>
@@ -216,6 +227,40 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Measurement>
 		</Param>
 		
+		<!-- Table definition ends ................................................. -->
+
+		<!-- button to trigger initial table population 
+		     (or reset to a known state -->
+		<Param id="50">
+			<Name>btnPopulateTable</Name>
+			<Type>write</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Populate</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
 		
 		
 	</Params>
@@ -224,8 +269,9 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 		
-		<QAction id="10" name="Addrow" encoding="csharp" triggers="Trigger_ID">
+		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50">
 		</QAction>
+
 	</QActions>
 
 	<Groups>
