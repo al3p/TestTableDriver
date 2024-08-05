@@ -12,9 +12,9 @@ public static class Parameter
 	{
 		/// <summary>PID: 50 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public const int btnpopulatetable_50 = 50;
+		public const int btnstaticpopulatetable_50 = 50;
 		/// <summary>PID: 50 | Type: write</summary>
-		public const int btnpopulatetable = 50;
+		public const int btnstaticpopulatetable = 50;
 		/// <summary>PID: 201 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int coleventsoverviewinstance_201 = 201;
@@ -82,8 +82,8 @@ public static class Parameter
 }
 public class WriteParameters
 {
-	/// <summary>PID: 50  | Type: write | DISCREETS: Populate = 1</summary>
-	public System.Object Btnpopulatetable {get { return Protocol.GetParameter(50); }set { Protocol.SetParameter(50, value); }}
+	/// <summary>PID: 50  | Type: write | DISCREETS: Populate Static = 1</summary>
+	public System.Object Btnstaticpopulatetable {get { return Protocol.GetParameter(50); }set { Protocol.SetParameter(50, value); }}
 	/// <summary>PID: 201  | Type: write</summary>
 	public System.Object Coleventsoverviewinstance {get { return Protocol.GetParameter(201); }set { Protocol.SetParameter(201, value); }}
 	/// <summary>PID: 202  | Type: write</summary>
@@ -101,8 +101,8 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 100</summary>
 	TbleventsoverviewQActionTable tbleventsoverview { get; set; }
 	object Afterstartup_dummy { get; set; }
-	object Btnpopulatetable_50 { get; set; }
-	object Btnpopulatetable { get; set; }
+	object Btnstaticpopulatetable_50 { get; set; }
+	object Btnstaticpopulatetable { get; set; }
 	object Coleventsoverviewinstance_101 { get; set; }
 	object Coleventsoverviewinstance { get; set; }
 	object Coleventsoverviewname_102 { get; set; }
@@ -120,10 +120,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public TbleventsoverviewQActionTable tbleventsoverview { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
-	/// <summary>PID: 50  | Type: write | DISCREETS: Populate = 1</summary>
-	public System.Object Btnpopulatetable_50 {get { return GetParameter(50); }set { SetParameter(50, value); }}
-	/// <summary>PID: 50  | Type: write | DISCREETS: Populate = 1</summary>
-	public System.Object Btnpopulatetable {get { return Write.Btnpopulatetable; }set { Write.Btnpopulatetable = value; }}
+	/// <summary>PID: 50  | Type: write | DISCREETS: Populate Static = 1</summary>
+	public System.Object Btnstaticpopulatetable_50 {get { return GetParameter(50); }set { SetParameter(50, value); }}
+	/// <summary>PID: 50  | Type: write | DISCREETS: Populate Static = 1</summary>
+	public System.Object Btnstaticpopulatetable {get { return Write.Btnstaticpopulatetable; }set { Write.Btnstaticpopulatetable = value; }}
 	/// <summary>PID: 101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Coleventsoverviewinstance_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}

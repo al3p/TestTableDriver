@@ -39,7 +39,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 	</Compliancies>
 
 	<Params>
-		<!-- Dummy param for startup sequence -->
+
+		<!-- Dummy param for startup sequence ..................................... -->
 		<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
@@ -232,7 +233,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<!-- button to trigger initial table population 
 		     (or reset to a known state -->
 		<Param id="50">
-			<Name>btnPopulateTable</Name>
+			<Name>btnStaticPopulateTable</Name>
 			<Type>write</Type>
 			<Information>
 			</Information>
@@ -255,7 +256,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Type width="110">button</Type>
 				<Discreets>
 					<Discreet>
-						<Display>Populate</Display>
+						<Display>Populate Static</Display>
 						<Value>1</Value>
 					</Discreet>
 				</Discreets>
@@ -269,8 +270,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 		
-		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50">
-		</QAction>
+		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50" />
 
 	</QActions>
 
