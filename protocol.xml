@@ -20,8 +20,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 -->
 
 <Protocol xmlns="http://www.skyline.be/protocol">
-	<Name>TableTest</Name>
-	<Description>TableTest DataMiner connector</Description>
+	<Name>TableQATest</Name>
+	<Description>Test DataMiner connector for QAction table interaction</Description>
 	<Version>1.0.0.1</Version>
 	<IntegrationID>DMS-DRV-0000</IntegrationID>
 	<Provider>Test</Provider>

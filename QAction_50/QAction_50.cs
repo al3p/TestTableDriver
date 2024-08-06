@@ -21,8 +21,8 @@ public static class QAction
 	{
 
 		/// this is NOT good OO programming practice
-		/// cde here is only t focus on understanding the correct action sequence 
-		/// that must be logically performed to populate a tabe.
+		/// code here is only to focus on understanding the correct action sequence 
+		/// that must be logically performed to populate a table.
 
 		try
 		{
