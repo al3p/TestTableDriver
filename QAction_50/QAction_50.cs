@@ -6,7 +6,8 @@ using System.Text;
 using Skyline.DataMiner.Scripting;
 
 /// <summary>
-/// DataMiner QAction Class: QActionName.
+/// DataMiner QAction Class: QAPopulateTable.
+/// populate the table with predefined hardcoded sample data
 /// </summary>
 public static class QAction
 {
@@ -14,7 +15,7 @@ public static class QAction
 	/// The QAction entry point.
 	/// </summary>
 	/// <param name="protocol">Link with SLProtocol process.</param>
-	/// 
+	///
 	private static readonly Random rd = new Random();
 
 	public static void Run(SLProtocolExt protocol)
@@ -29,12 +30,13 @@ public static class QAction
 
 			List<object[]> allRows = new List<object[]>
 			{
-				CreateEventRow("1", "News").ToObjectArray(),
-				CreateEventRow("2", "Sports").ToObjectArray(),
-				CreateEventRow("3", "Movie Time").ToObjectArray(),
-				CreateEventRow("4", "Skyline Late Night").ToObjectArray(),
+				CreateEventRow("1", "House of dragons").ToObjectArray(),
+				CreateEventRow("2", "The lords of the rings").ToObjectArray(),
+				CreateEventRow("3", "A song of ice and fire").ToObjectArray(),
+				CreateEventRow("4", "Harry Potter").ToObjectArray(),
 			};
 
+			/// object FillArray(int 'The ID of the table parameter', List<object[]> 'The rows of the table', NotifyProtocol.SaveOption option)
 			protocol.FillArray(Parameter.Tbleventsoverview.tablePid, allRows, NotifyProtocol.SaveOption.Full);
 
 		}

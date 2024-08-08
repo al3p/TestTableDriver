@@ -52,6 +52,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			<Name>tblEventsOverview</Name>
 			<Description>Events Overview</Description>
 			<Type>array</Type>
+			<!-- index="0" means the first column is the one containing the primary key identifying the table entry
+			     "naming=/102" means the param 102 (the second column) is the display key - used e.g. for alarms to display and filter. -->
 			<ArrayOptions index="0" options=";naming=/102">
 				<ColumnOption idx="0" pid="101" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="102" type="retrieved" options="" />
@@ -231,11 +233,13 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<!-- Table definition ends ................................................. -->
 
 		<!-- button to trigger initial table population 
-		     (or reset to a known state -->
+		     (or reset to a known state) 
+			 fires QAction -->
 		<Param id="50">
 			<Name>btnStaticPopulateTable</Name>
 			<Type>write</Type>
 			<Information>
+				<Subtext>Push to populate the table with predefined hardcoded sample data</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -263,6 +267,39 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Measurement>
 		</Param>
 		
+		<!-- button to delete all the entries in the table 
+		     fires trigger -> action -->
+		<Param id="60">
+			<Name>btnClearTable</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Push to delete all the rows in the table</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>5</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Clear Table</Display>
+						<Value>2</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
 		
 	</Params>
 
@@ -271,7 +308,6 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 		
 		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50" />
-
 	</QActions>
 
 	<Groups>
@@ -295,6 +331,16 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Id>1</Id>
 			</Content>
 		</Trigger>
+
+		<Trigger id="60">
+			<Name>TrgClearTable</Name>
+			<On id="60">parameter</On>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>60</Id>
+			</Content>
+		</Trigger>
 	</Triggers>
 
 	<Actions>
@@ -307,6 +353,12 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			<Name>After Startup QAction</Name>
 			<On id="2">parameter</On>
 			<Type>run actions</Type>
+		</Action>
+
+		<Action id="60">
+			<Name>ActClearTable</Name>
+			<On id="100">parameter</On>
+			<Type>clear</Type>
 		</Action>
 	</Actions>
 
