@@ -8,6 +8,21 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
+	/// <summary>PID: 111 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int fieldeventsoverviewinstance_111 = 111;
+	/// <summary>PID: 111 | Type: read</summary>
+	public const int fieldeventsoverviewinstance = 111;
+	/// <summary>PID: 112 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int fieldeventsoverviewname_112 = 112;
+	/// <summary>PID: 112 | Type: read</summary>
+	public const int fieldeventsoverviewname = 112;
+	/// <summary>PID: 113 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int fieldeventsoverviewstatus_113 = 113;
+	/// <summary>PID: 113 | Type: read</summary>
+	public const int fieldeventsoverviewstatus = 113;
 	public class Write
 	{
 		/// <summary>PID: 50 | Type: write</summary>
@@ -20,6 +35,11 @@ public static class Parameter
 		public const int btncleartable_60 = 60;
 		/// <summary>PID: 60 | Type: write</summary>
 		public const int btncleartable = 60;
+		/// <summary>PID: 70 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int btnfieldpopulatetable_70 = 70;
+		/// <summary>PID: 70 | Type: write</summary>
+		public const int btnfieldpopulatetable = 70;
 		/// <summary>PID: 201 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int coleventsoverviewinstance_201 = 201;
@@ -35,6 +55,21 @@ public static class Parameter
 		public const int coleventsoverviewstatus_203 = 203;
 		/// <summary>PID: 203 | Type: write</summary>
 		public const int coleventsoverviewstatus = 203;
+		/// <summary>PID: 211 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int fieldeventsoverviewinstance_211 = 211;
+		/// <summary>PID: 211 | Type: write</summary>
+		public const int fieldeventsoverviewinstance = 211;
+		/// <summary>PID: 212 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int fieldeventsoverviewname_212 = 212;
+		/// <summary>PID: 212 | Type: write</summary>
+		public const int fieldeventsoverviewname = 212;
+		/// <summary>PID: 213 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int fieldeventsoverviewstatus_213 = 213;
+		/// <summary>PID: 213 | Type: write</summary>
+		public const int fieldeventsoverviewstatus = 213;
 	}
 	public class Tbleventsoverview
 	{
@@ -91,12 +126,20 @@ public class WriteParameters
 	public System.Object Btnstaticpopulatetable {get { return Protocol.GetParameter(50); }set { Protocol.SetParameter(50, value); }}
 	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 2</summary>
 	public System.Object Btncleartable {get { return Protocol.GetParameter(60); }set { Protocol.SetParameter(60, value); }}
+	/// <summary>PID: 70  | Type: write | DISCREETS: Add row = 1</summary>
+	public System.Object Btnfieldpopulatetable {get { return Protocol.GetParameter(70); }set { Protocol.SetParameter(70, value); }}
 	/// <summary>PID: 201  | Type: write</summary>
 	public System.Object Coleventsoverviewinstance {get { return Protocol.GetParameter(201); }set { Protocol.SetParameter(201, value); }}
 	/// <summary>PID: 202  | Type: write</summary>
 	public System.Object Coleventsoverviewname {get { return Protocol.GetParameter(202); }set { Protocol.SetParameter(202, value); }}
 	/// <summary>PID: 203  | Type: write | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
 	public System.Object Coleventsoverviewstatus {get { return Protocol.GetParameter(203); }set { Protocol.SetParameter(203, value); }}
+	/// <summary>PID: 211  | Type: write</summary>
+	public System.Object Fieldeventsoverviewinstance {get { return Protocol.GetParameter(211); }set { Protocol.SetParameter(211, value); }}
+	/// <summary>PID: 212  | Type: write</summary>
+	public System.Object Fieldeventsoverviewname {get { return Protocol.GetParameter(212); }set { Protocol.SetParameter(212, value); }}
+	/// <summary>PID: 213  | Type: write | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
+	public System.Object Fieldeventsoverviewstatus {get { return Protocol.GetParameter(213); }set { Protocol.SetParameter(213, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -112,15 +155,26 @@ public interface SLProtocolExt : SLProtocol
 	object Btnstaticpopulatetable { get; set; }
 	object Btncleartable_60 { get; set; }
 	object Btncleartable { get; set; }
+	object Btnfieldpopulatetable_70 { get; set; }
+	object Btnfieldpopulatetable { get; set; }
 	object Coleventsoverviewinstance_101 { get; set; }
 	object Coleventsoverviewinstance { get; set; }
 	object Coleventsoverviewname_102 { get; set; }
 	object Coleventsoverviewname { get; set; }
 	object Coleventsoverviewstatus_103 { get; set; }
 	object Coleventsoverviewstatus { get; set; }
+	object Fieldeventsoverviewinstance_111 { get; set; }
+	object Fieldeventsoverviewinstance { get; set; }
+	object Fieldeventsoverviewname_112 { get; set; }
+	object Fieldeventsoverviewname { get; set; }
+	object Fieldeventsoverviewstatus_113 { get; set; }
+	object Fieldeventsoverviewstatus { get; set; }
 	object Coleventsoverviewinstance_201 { get; set; }
 	object Coleventsoverviewname_202 { get; set; }
 	object Coleventsoverviewstatus_203 { get; set; }
+	object Fieldeventsoverviewinstance_211 { get; set; }
+	object Fieldeventsoverviewname_212 { get; set; }
+	object Fieldeventsoverviewstatus_213 { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -137,6 +191,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Btncleartable_60 {get { return GetParameter(60); }set { SetParameter(60, value); }}
 	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 2</summary>
 	public System.Object Btncleartable {get { return Write.Btncleartable; }set { Write.Btncleartable = value; }}
+	/// <summary>PID: 70  | Type: write | DISCREETS: Add row = 1</summary>
+	public System.Object Btnfieldpopulatetable_70 {get { return GetParameter(70); }set { SetParameter(70, value); }}
+	/// <summary>PID: 70  | Type: write | DISCREETS: Add row = 1</summary>
+	public System.Object Btnfieldpopulatetable {get { return Write.Btnfieldpopulatetable; }set { Write.Btnfieldpopulatetable = value; }}
 	/// <summary>PID: 101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Coleventsoverviewinstance_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}
@@ -152,6 +210,21 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Coleventsoverviewstatus_103 {get { return GetParameter(103); }set { SetParameter(103, value); }}
 	/// <summary>PID: 103  | Type: read | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
 	public System.Object Coleventsoverviewstatus {get { return GetParameter(103); }set { SetParameter(103, value); }}
+	/// <summary>PID: 111  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Fieldeventsoverviewinstance_111 {get { return GetParameter(111); }set { SetParameter(111, value); }}
+	/// <summary>PID: 111  | Type: read</summary>
+	public System.Object Fieldeventsoverviewinstance {get { return GetParameter(111); }set { SetParameter(111, value); }}
+	/// <summary>PID: 112  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Fieldeventsoverviewname_112 {get { return GetParameter(112); }set { SetParameter(112, value); }}
+	/// <summary>PID: 112  | Type: read</summary>
+	public System.Object Fieldeventsoverviewname {get { return GetParameter(112); }set { SetParameter(112, value); }}
+	/// <summary>PID: 113  | Type: read | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Fieldeventsoverviewstatus_113 {get { return GetParameter(113); }set { SetParameter(113, value); }}
+	/// <summary>PID: 113  | Type: read | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
+	public System.Object Fieldeventsoverviewstatus {get { return GetParameter(113); }set { SetParameter(113, value); }}
 	/// <summary>PID: 201  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Coleventsoverviewinstance_201 {get { return GetParameter(201); }set { SetParameter(201, value); }}
@@ -161,6 +234,15 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 203  | Type: write | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Coleventsoverviewstatus_203 {get { return GetParameter(203); }set { SetParameter(203, value); }}
+	/// <summary>PID: 211  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Fieldeventsoverviewinstance_211 {get { return GetParameter(211); }set { SetParameter(211, value); }}
+	/// <summary>PID: 212  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Fieldeventsoverviewname_212 {get { return GetParameter(212); }set { SetParameter(212, value); }}
+	/// <summary>PID: 213  | Type: write | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Fieldeventsoverviewstatus_213 {get { return GetParameter(213); }set { SetParameter(213, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{

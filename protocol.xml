@@ -251,8 +251,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Positions>
 					<Position>
 						<Page>General</Page>
-						<Column>0</Column>
-						<Row>4</Row>
+						<Column>1</Column>
+						<Row>5</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -285,8 +285,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Positions>
 					<Position>
 						<Page>General</Page>
-						<Column>0</Column>
-						<Row>5</Row>
+						<Column>1</Column>
+						<Row>6</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -300,14 +300,230 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				</Discreets>
 			</Measurement>
 		</Param>
-		
+
+		<!-- Rows Fields set start ................................................. -->
+		<!-- first column -->
+		<Param id="111" trending="false">
+			<Name>fieldEventsOverviewInstance</Name>
+			<Description>Instance to set</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally in DataMiner to identify the table entries</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="211" setter="true">
+			<Name>fieldEventsOverviewInstance</Name>
+			<Description>Instance to set</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+
+		<!-- second column -->
+		<Param id="112" trending="false">
+			<Name>fieldEventsOverviewName</Name>
+			<Description>Name [IDX] to set</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the name used as IDX on the table</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="212" setter="true">
+			<Name>fieldEventsOverviewName</Name>
+			<Description>Name [IDX] to set</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+
+		<!-- third last column -->
+		<Param id="113" trending="false">
+			<Name>fieldEventsOverviewStatus</Name>
+			<Description>Status to set</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the current status of the event</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+				<Normal>0;3</Normal>
+				<WaH>1</WaH>
+				<MaH>2</MaH>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Pending</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Scheduled</Display>
+						<Value>1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Busy</Display>
+						<Value>2</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Finished</Display>
+						<Value>3</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="213" setter="true">
+			<Name>fieldEventsOverviewStatus</Name>
+			<Description>Status to set</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Pending</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Scheduled</Display>
+						<Value>1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Busy</Display>
+						<Value>2</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Finished</Display>
+						<Value>3</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+
+
+		<!-- button to add a row with the above field data 
+			 fires QAction -->
+		<Param id="70">
+			<Name>btnFieldPopulateTable</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Push to add a row in the table with the data of the above fields</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Add row</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+
+		<!-- Row Fields set ends ................................................... -->
+
+
 	</Params>
 
 	<QActions>
-		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
+	    <!-- first QAcrion is to host common code that can be called in different othe QActions -->
+		<!-- <ProjectReference Include="..\QAction_1\QAction_1.csproj" />  -->
+		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile"/>
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 		
-		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50" />
+		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50"  dllImport="[ProtocolName].[ProtocolVersion].QAction.1.dll"/>
+		<QAction id="70" name="QAAddFieldsTable" encoding="csharp" triggers="70"/>
 	</QActions>
 
 	<Groups>

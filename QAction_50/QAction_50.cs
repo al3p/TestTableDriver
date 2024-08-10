@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text;
 
 using Skyline.DataMiner.Scripting;
+using Skyline.Protocol.MyExtension;
 
 /// <summary>
 /// DataMiner QAction Class: QAPopulateTable.
@@ -30,10 +31,10 @@ public static class QAction
 
 			List<object[]> allRows = new List<object[]>
 			{
-				CreateEventRow("1", "House of dragons").ToObjectArray(),
-				CreateEventRow("2", "The lords of the rings").ToObjectArray(),
-				CreateEventRow("3", "A song of ice and fire").ToObjectArray(),
-				CreateEventRow("4", "Harry Potter").ToObjectArray(),
+				MyCommons.CreateEventRow("1", "House of dragons",       GetRandomEventState()).ToObjectArray(),
+				MyCommons.CreateEventRow("2", "The lords of the rings", GetRandomEventState()).ToObjectArray(),
+				MyCommons.CreateEventRow("3", "A song of ice and fire", GetRandomEventState()).ToObjectArray(),
+				MyCommons.CreateEventRow("4", "Harry Potter",           GetRandomEventState()).ToObjectArray(),
 			};
 
 			/// object FillArray(int 'The ID of the table parameter', List<object[]> 'The rows of the table', NotifyProtocol.SaveOption option)
@@ -47,18 +48,21 @@ public static class QAction
 
 	}
 
-	private static TbleventsoverviewQActionRow CreateEventRow(string primaryKey, string eventName)
+	/*
+	private static TbleventsoverviewQActionRow CreateEventRow(string primaryKey, string eventName, int eventState)
 	{
 
 		TbleventsoverviewQActionRow row = new TbleventsoverviewQActionRow
 		{
 			Coleventsoverviewinstance_101 = primaryKey,
 			Coleventsoverviewname_102 = eventName,
-			Coleventsoverviewstatus_103 = GetRandomEventState(),
+			/// old stuff, moved away: Coleventsoverviewstatus_103 = GetRandomEventState(),
+			Coleventsoverviewstatus_103 = eventState,
 		};
 
 		return row;
 	}
+	*/
 
 	private static int GetRandomEventState()
 	{
