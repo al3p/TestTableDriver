@@ -22,13 +22,19 @@ public static class QAction
 		{
 
 			string instance = protocol.Fieldeventsoverviewinstance_111.ToString();
-			string name = protocol.Fieldeventsoverviewinstance_111.ToString();
-			int status = Convert.ToInt32(protocol.Fieldeventsoverviewinstance_111);
+			if (instance == null || instance == "0")
+				return;
+			string name = protocol.Fieldeventsoverviewname_112.ToString();
+			int status = Convert.ToInt32(protocol.Fieldeventsoverviewstatus_113);
 
-			object[] newRow = MyCommons.CreateEventRow(instance, name, status).ToObjectArray();
-			protocol.AddRow(Parameter.Tbleventsoverview.tablePid, newRow);
+			///object[] newRow = MyCommons.CreateEventRow(instance, name, status).ToObjectArray();
+			///protocol.AddRow(Parameter.Tbleventsoverview.tablePid, newRow);
+			TbleventsoverviewQActionRow newRow = MyCommons.CreateEventRow(instance, name, status);
 
-		}
+            protocol.tbleventsoverview.SetRow(newRow, true);
+
+
+        }
 		catch (Exception ex)
 		{
 			protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Exception thrown:{Environment.NewLine}{ex}", LogType.Error, LogLevel.NoLogging);

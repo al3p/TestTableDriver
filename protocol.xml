@@ -300,7 +300,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				</Discreets>
 			</Measurement>
 		</Param>
-
+		
 		<!-- Rows Fields set start ................................................. -->
 		<!-- first column -->
 		<Param id="111" trending="false">
@@ -314,9 +314,17 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>other</RawType>
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>0</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
 			</Display>
 			<Measurement>
 				<Type>string</Type>
@@ -345,7 +353,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-
+		
 		<!-- second column -->
 		<Param id="112" trending="false">
 			<Name>fieldEventsOverviewName</Name>
@@ -358,9 +366,17 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>other</RawType>
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>Not set</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
 			</Display>
 			<Measurement>
 				<Type>string</Type>
@@ -389,7 +405,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-
+		
 		<!-- third last column -->
 		<Param id="113" trending="false">
 			<Name>fieldEventsOverviewStatus</Name>
@@ -402,15 +418,23 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>0</DefaultValue> <!-- Pending -->
 			</Interprete>
 			<Alarm>
-				<Monitored>true</Monitored>
+				<Monitored>false</Monitored>
 				<Normal>0;3</Normal>
 				<WaH>1</WaH>
 				<MaH>2</MaH>
 			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
 			</Display>
 			<Measurement>
 				<Type>discreet</Type>
@@ -475,8 +499,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				</Discreets>
 			</Measurement>
 		</Param>
-
-
+		
+		
 		<!-- button to add a row with the above field data 
 			 fires QAction -->
 		<Param id="70">
@@ -510,7 +534,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				</Discreets>
 			</Measurement>
 		</Param>
-
+		
 		<!-- Row Fields set ends ................................................... -->
 
 
