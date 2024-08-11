@@ -40,6 +40,11 @@ public static class Parameter
 		public const int btnfieldpopulatetable_70 = 70;
 		/// <summary>PID: 70 | Type: write</summary>
 		public const int btnfieldpopulatetable = 70;
+		/// <summary>PID: 80 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int btnfielddeleterow_80 = 80;
+		/// <summary>PID: 80 | Type: write</summary>
+		public const int btnfielddeleterow = 80;
 		/// <summary>PID: 201 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int coleventsoverviewinstance_201 = 201;
@@ -98,6 +103,11 @@ public static class Parameter
 			public const int coleventsoverviewstatus = 103;
 			public class Write
 			{
+				/// <summary>PID: 104 | Type: write</summary>
+				[EditorBrowsable(EditorBrowsableState.Never)]
+				public const int coleventsselectbutton_104 = 104;
+				/// <summary>PID: 104 | Type: write</summary>
+				public const int coleventsselectbutton = 104;
 			}
 		}
 		public class Idx
@@ -128,6 +138,10 @@ public class WriteParameters
 	public System.Object Btncleartable {get { return Protocol.GetParameter(60); }set { Protocol.SetParameter(60, value); }}
 	/// <summary>PID: 70  | Type: write | DISCREETS: Add row = 1</summary>
 	public System.Object Btnfieldpopulatetable {get { return Protocol.GetParameter(70); }set { Protocol.SetParameter(70, value); }}
+	/// <summary>PID: 80  | Type: write | DISCREETS: Delete row = 1</summary>
+	public System.Object Btnfielddeleterow {get { return Protocol.GetParameter(80); }set { Protocol.SetParameter(80, value); }}
+	/// <summary>PID: 104  | Type: write | DISCREETS: = = 1</summary>
+	public System.Object Coleventsselectbutton {get { return Protocol.GetParameter(104); }set { Protocol.SetParameter(104, value); }}
 	/// <summary>PID: 201  | Type: write</summary>
 	public System.Object Coleventsoverviewinstance {get { return Protocol.GetParameter(201); }set { Protocol.SetParameter(201, value); }}
 	/// <summary>PID: 202  | Type: write</summary>
@@ -157,12 +171,16 @@ public interface SLProtocolExt : SLProtocol
 	object Btncleartable { get; set; }
 	object Btnfieldpopulatetable_70 { get; set; }
 	object Btnfieldpopulatetable { get; set; }
+	object Btnfielddeleterow_80 { get; set; }
+	object Btnfielddeleterow { get; set; }
 	object Coleventsoverviewinstance_101 { get; set; }
 	object Coleventsoverviewinstance { get; set; }
 	object Coleventsoverviewname_102 { get; set; }
 	object Coleventsoverviewname { get; set; }
 	object Coleventsoverviewstatus_103 { get; set; }
 	object Coleventsoverviewstatus { get; set; }
+	object Coleventsselectbutton_104 { get; set; }
+	object Coleventsselectbutton { get; set; }
 	object Fieldeventsoverviewinstance_111 { get; set; }
 	object Fieldeventsoverviewinstance { get; set; }
 	object Fieldeventsoverviewname_112 { get; set; }
@@ -195,6 +213,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Btnfieldpopulatetable_70 {get { return GetParameter(70); }set { SetParameter(70, value); }}
 	/// <summary>PID: 70  | Type: write | DISCREETS: Add row = 1</summary>
 	public System.Object Btnfieldpopulatetable {get { return Write.Btnfieldpopulatetable; }set { Write.Btnfieldpopulatetable = value; }}
+	/// <summary>PID: 80  | Type: write | DISCREETS: Delete row = 1</summary>
+	public System.Object Btnfielddeleterow_80 {get { return GetParameter(80); }set { SetParameter(80, value); }}
+	/// <summary>PID: 80  | Type: write | DISCREETS: Delete row = 1</summary>
+	public System.Object Btnfielddeleterow {get { return Write.Btnfielddeleterow; }set { Write.Btnfielddeleterow = value; }}
 	/// <summary>PID: 101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Coleventsoverviewinstance_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}
@@ -210,6 +232,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Coleventsoverviewstatus_103 {get { return GetParameter(103); }set { SetParameter(103, value); }}
 	/// <summary>PID: 103  | Type: read | DISCREETS: Pending = 0, Scheduled = 1, Busy = 2, Finished = 3</summary>
 	public System.Object Coleventsoverviewstatus {get { return GetParameter(103); }set { SetParameter(103, value); }}
+	/// <summary>PID: 104  | Type: write | DISCREETS: = = 1</summary>
+	public System.Object Coleventsselectbutton_104 {get { return GetParameter(104); }set { SetParameter(104, value); }}
+	/// <summary>PID: 104  | Type: write | DISCREETS: = = 1</summary>
+	public System.Object Coleventsselectbutton {get { return Write.Coleventsselectbutton; }set { Write.Coleventsselectbutton = value; }}
 	/// <summary>PID: 111  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Fieldeventsoverviewinstance_111 {get { return GetParameter(111); }set { SetParameter(111, value); }}
@@ -275,8 +301,12 @@ public class TbleventsoverviewQActionRow : QActionTableRow
 	public System.Object Coleventsoverviewstatus_103 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
 	/// <summary>PID: 103 | Type: read</summary>
 	public System.Object Coleventsoverviewstatus { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
-	public TbleventsoverviewQActionRow() : base(0, 3) { }
-	public TbleventsoverviewQActionRow(System.Object[] oRow) : base(0, 3, oRow) { }
+	/// <summary>PID: 104 | Type: write</summary>
+	public System.Object Coleventsselectbutton_104 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 104 | Type: write</summary>
+	public System.Object Coleventsselectbutton { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	public TbleventsoverviewQActionRow() : base(0, 4) { }
+	public TbleventsoverviewQActionRow(System.Object[] oRow) : base(0, 4, oRow) { }
 	public static implicit operator TbleventsoverviewQActionRow(System.Object[] source) { return new TbleventsoverviewQActionRow(source); }
 	public static implicit operator System.Object[](TbleventsoverviewQActionRow source) { return source.ToObjectArray(); }
 }

@@ -58,6 +58,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<ColumnOption idx="0" pid="101" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="102" type="retrieved" options="" />
 				<ColumnOption idx="2" pid="103" type="retrieved" options=";save" />
+				<ColumnOption idx="3" pid="104" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>This is an overview of all events</Subtext>
@@ -73,7 +74,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:101|0-102|1-103|2,width:100-100-100,sort:STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:101|0-102|1-103|2-104|3,width:100-100-100-100,sort:STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		
@@ -151,7 +152,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Measurement>
 		</Param>
 		
-		<!-- third last column -->
+		<!-- third column -->
 		<Param id="103" trending="false">
 			<Name>colEventsOverviewStatus</Name>
 			<Description>Status (Events Overview)</Description>
@@ -225,6 +226,32 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 					<Discreet>
 						<Display>Finished</Display>
 						<Value>3</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		
+		<!-- fourth last column -->
+		<Param id="104">
+			<Name>colEventsSelectButton</Name>
+			<Description>Select (Events Overview)</Description>
+			<Type>write</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type width="10">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>=</Display>
+						<Value>1</Value>
 					</Discreet>
 				</Discreets>
 			</Measurement>
@@ -418,7 +445,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
-				<DefaultValue>0</DefaultValue> <!-- Pending -->
+				<DefaultValue>0</DefaultValue>
+				<!-- Pending -->
 			</Interprete>
 			<Alarm>
 				<Monitored>false</Monitored>
@@ -534,7 +562,42 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				</Discreets>
 			</Measurement>
 		</Param>
-		
+
+		<!-- button to delete a row with the index defined in the above field data 
+			 fires QAction -->
+		<Param id="80">
+			<Name>btnFieldDeleteRow</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Push delete the row with the above index</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Delete row</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+
+
 		<!-- Row Fields set ends ................................................... -->
 
 
@@ -548,6 +611,9 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		
 		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50"  dllImport="[ProtocolName].[ProtocolVersion].QAction.1.dll"/>
 		<QAction id="70" name="QAAddFieldsTable" encoding="csharp" triggers="70"/>
+		<QAction id="104" name="QASelectRow" encoding="csharp" triggers="104" />
+		<QAction id="80" name="QADeleteRow" encoding="csharp" triggers="80">
+		</QAction>
 	</QActions>
 
 	<Groups>

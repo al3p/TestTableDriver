@@ -27,11 +27,13 @@ public static class QAction
 			string name = protocol.Fieldeventsoverviewname_112.ToString();
 			int status = Convert.ToInt32(protocol.Fieldeventsoverviewstatus_113);
 
-			///object[] newRow = MyCommons.CreateEventRow(instance, name, status).ToObjectArray();
-			///protocol.AddRow(Parameter.Tbleventsoverview.tablePid, newRow);
+			/// two alternatives to set the row in the table: with SetRow the methods take care to update existing rows as well as creating new ones with the specified keys
+			/// object[] newRow = MyCommons.CreateEventRow(instance, name, status).ToObjectArray();
+			/// protocol.AddRow(Parameter.Tbleventsoverview.tablePid, newRow);
 			TbleventsoverviewQActionRow newRow = MyCommons.CreateEventRow(instance, name, status);
 
-            protocol.tbleventsoverview.SetRow(newRow, true);
+			/// https://docs.dataminer.services/develop/api/types/Skyline.DataMiner.Scripting.QActionTable.SetRow.html
+			protocol.tbleventsoverview.SetRow(newRow, true);
 
 
         }
