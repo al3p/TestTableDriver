@@ -173,6 +173,7 @@ public interface SLProtocolExt : SLProtocol
 	object Btnfieldpopulatetable { get; set; }
 	object Btnfielddeleterow_80 { get; set; }
 	object Btnfielddeleterow { get; set; }
+	object Dmystatecycle_dummy { get; set; }
 	object Coleventsoverviewinstance_101 { get; set; }
 	object Coleventsoverviewinstance { get; set; }
 	object Coleventsoverviewname_102 { get; set; }
@@ -217,6 +218,8 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Btnfielddeleterow_80 {get { return GetParameter(80); }set { SetParameter(80, value); }}
 	/// <summary>PID: 80  | Type: write | DISCREETS: Delete row = 1</summary>
 	public System.Object Btnfielddeleterow {get { return Write.Btnfielddeleterow; }set { Write.Btnfielddeleterow = value; }}
+	/// <summary>PID: 90  | Type: dummy</summary>
+	public System.Object Dmystatecycle_dummy {get { return GetParameter(90); }set { SetParameter(90, value); }}
 	/// <summary>PID: 101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Coleventsoverviewinstance_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}

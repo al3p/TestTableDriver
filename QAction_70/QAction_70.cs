@@ -20,8 +20,9 @@ public static class QAction
 	{
 		try
 		{
-
-			string instance = protocol.Fieldeventsoverviewinstance_111.ToString();
+            protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Executing QAction", LogType.DebugInfo, LogLevel.NoLogging);
+            /// 2024/08/12 14:52:37.577|SLManagedScripting.exe|ManagedInterop|DBG|5|78|QA70|70|Run|Executing QAction
+            string instance = protocol.Fieldeventsoverviewinstance_111.ToString();
 			if (instance == null || instance == "0")
 				return;
 			string name = protocol.Fieldeventsoverviewname_112.ToString();
@@ -42,4 +43,4 @@ public static class QAction
 			protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Exception thrown:{Environment.NewLine}{ex}", LogType.Error, LogLevel.NoLogging);
 		}
 	}
-}
+}	

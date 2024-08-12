@@ -18,7 +18,8 @@ public static class QAction
 	{
 		try
 		{
-			string tableRowKey = protocol.Coleventsoverviewinstance_101.ToString();
+            protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Executing QAction", LogType.DebugInfo, LogLevel.NoLogging);
+            string tableRowKey = protocol.Fieldeventsoverviewinstance_111.ToString();
 			protocol.tbleventsoverview.DeleteRow(tableRowKey);
 
 		}

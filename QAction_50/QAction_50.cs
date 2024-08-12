@@ -28,8 +28,9 @@ public static class QAction
 
 		try
 		{
+            protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Executing QAction", LogType.DebugInfo, LogLevel.NoLogging);
 
-			List<object[]> allRows = new List<object[]>
+            List<object[]> allRows = new List<object[]>
 			{
 				MyCommons.CreateEventRow("1", "House of dragons",       GetRandomEventState()).ToObjectArray(),
 				MyCommons.CreateEventRow("2", "The lords of the rings", GetRandomEventState()).ToObjectArray(),

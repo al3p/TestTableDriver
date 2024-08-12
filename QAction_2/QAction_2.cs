@@ -16,13 +16,11 @@ public static class QAction
     /// <param name="protocol">Link with SLProtocol process.</param>
     public static void Run(SLProtocol protocol)
     {
-        bool useProtocolExtended = false;
 
         try
         {
-            int selectedButtonParamId = Convert.ToInt32(protocol.GetTriggerParameter());
+            protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Executing QAction", LogType.DebugInfo, LogLevel.NoLogging);
 
-            eventsOverviewHelper.UserRequest userRequest = 
         }
         catch (Exception ex)
         {
