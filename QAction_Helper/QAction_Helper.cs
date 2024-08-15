@@ -25,6 +25,11 @@ public static class Parameter
 	public const int fieldeventsoverviewstatus = 113;
 	public class Write
 	{
+		/// <summary>PID: 40 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int btnjsonserialize_40 = 40;
+		/// <summary>PID: 40 | Type: write</summary>
+		public const int btnjsonserialize = 40;
 		/// <summary>PID: 50 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int btnstaticpopulatetable_50 = 50;
@@ -132,9 +137,11 @@ public static class Parameter
 }
 public class WriteParameters
 {
+	/// <summary>PID: 40  | Type: write | DISCREETS: To JSON = 1</summary>
+	public System.Object Btnjsonserialize {get { return Protocol.GetParameter(40); }set { Protocol.SetParameter(40, value); }}
 	/// <summary>PID: 50  | Type: write | DISCREETS: Populate Static = 1</summary>
 	public System.Object Btnstaticpopulatetable {get { return Protocol.GetParameter(50); }set { Protocol.SetParameter(50, value); }}
-	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 2</summary>
+	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 1</summary>
 	public System.Object Btncleartable {get { return Protocol.GetParameter(60); }set { Protocol.SetParameter(60, value); }}
 	/// <summary>PID: 70  | Type: write | DISCREETS: Add row = 1</summary>
 	public System.Object Btnfieldpopulatetable {get { return Protocol.GetParameter(70); }set { Protocol.SetParameter(70, value); }}
@@ -165,6 +172,8 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 100</summary>
 	TbleventsoverviewQActionTable tbleventsoverview { get; set; }
 	object Afterstartup_dummy { get; set; }
+	object Btnjsonserialize_40 { get; set; }
+	object Btnjsonserialize { get; set; }
 	object Btnstaticpopulatetable_50 { get; set; }
 	object Btnstaticpopulatetable { get; set; }
 	object Btncleartable_60 { get; set; }
@@ -202,13 +211,17 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public TbleventsoverviewQActionTable tbleventsoverview { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
+	/// <summary>PID: 40  | Type: write | DISCREETS: To JSON = 1</summary>
+	public System.Object Btnjsonserialize_40 {get { return GetParameter(40); }set { SetParameter(40, value); }}
+	/// <summary>PID: 40  | Type: write | DISCREETS: To JSON = 1</summary>
+	public System.Object Btnjsonserialize {get { return Write.Btnjsonserialize; }set { Write.Btnjsonserialize = value; }}
 	/// <summary>PID: 50  | Type: write | DISCREETS: Populate Static = 1</summary>
 	public System.Object Btnstaticpopulatetable_50 {get { return GetParameter(50); }set { SetParameter(50, value); }}
 	/// <summary>PID: 50  | Type: write | DISCREETS: Populate Static = 1</summary>
 	public System.Object Btnstaticpopulatetable {get { return Write.Btnstaticpopulatetable; }set { Write.Btnstaticpopulatetable = value; }}
-	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 2</summary>
+	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 1</summary>
 	public System.Object Btncleartable_60 {get { return GetParameter(60); }set { SetParameter(60, value); }}
-	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 2</summary>
+	/// <summary>PID: 60  | Type: write | DISCREETS: Clear Table = 1</summary>
 	public System.Object Btncleartable {get { return Write.Btncleartable; }set { Write.Btncleartable = value; }}
 	/// <summary>PID: 70  | Type: write | DISCREETS: Add row = 1</summary>
 	public System.Object Btnfieldpopulatetable_70 {get { return GetParameter(70); }set { SetParameter(70, value); }}

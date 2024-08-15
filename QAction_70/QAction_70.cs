@@ -31,7 +31,7 @@ public static class QAction
 			/// two alternatives to set the row in the table: with SetRow the methods take care to update existing rows as well as creating new ones with the specified keys
 			/// object[] newRow = MyCommons.CreateEventRow(instance, name, status).ToObjectArray();
 			/// protocol.AddRow(Parameter.Tbleventsoverview.tablePid, newRow);
-			TbleventsoverviewQActionRow newRow = MyCommons.CreateEventRow(instance, name, status);
+			TbleventsoverviewQActionRow newRow = MyCommons.CreateEventRow(protocol, instance, name, status);
 
 			/// https://docs.dataminer.services/develop/api/types/Skyline.DataMiner.Scripting.QActionTable.SetRow.html
 			protocol.tbleventsoverview.SetRow(newRow, true);

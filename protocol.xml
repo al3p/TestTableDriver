@@ -90,6 +90,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>other</RawType>
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>0</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -127,6 +128,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>other</RawType>
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>Not Set</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -164,6 +166,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>0</DefaultValue>
 			</Interprete>
 			<Alarm>
 				<Monitored>true</Monitored>
@@ -242,6 +245,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -272,6 +276,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -279,7 +284,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 					<Position>
 						<Page>General</Page>
 						<Column>1</Column>
-						<Row>7</Row>
+						<Row>8</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -306,6 +311,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -313,7 +319,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 					<Position>
 						<Page>General</Page>
 						<Column>1</Column>
-						<Row>8</Row>
+						<Row>9</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -322,7 +328,42 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Discreets>
 					<Discreet>
 						<Display>Clear Table</Display>
-						<Value>2</Value>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		
+		<!-- button to serialize to a json file the table content 
+		     fires trigger -> QAction -->
+		<Param id="40">
+			<Name>btnJSONSerialize</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Push to save table rows in a JSON file</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>6</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>To JSON</Display>
+						<Value>1</Value>
 					</Discreet>
 				</Discreets>
 			</Measurement>
@@ -445,8 +486,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
-				<DefaultValue>0</DefaultValue>
-				<!-- Pending -->
+				<DefaultValue>0</DefaultValue>  <!-- Pending -->
 			</Interprete>
 			<Alarm>
 				<Monitored>false</Monitored>
@@ -541,6 +581,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -575,6 +616,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -600,21 +642,21 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		
 		<!-- Row Fields set ends ................................................... -->
 
-		<!-- Dummy param for startup sequence ..................................... -->
+		<!-- Dummy param for state cycling ......................................... -->
 		<Param id="90">
 			<Name>DmyStateCycle</Name>
 			<Description>Dummy to drive state cycle</Description>
 			<Type>dummy</Type>
 		</Param>
-
-
-
+		
+		
+		
 	</Params>
 
 	<QActions>
 	    <!-- first QAcrion is to host common code that can be called in different othe QActions -->
 		<!-- <ProjectReference Include="..\QAction_1\QAction_1.csproj" />  -->
-		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile"/>
+		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" dllImport="System.Web.Extensions.dll"/>
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 		
 		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50"/>
@@ -622,6 +664,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<QAction id="104" name="QASelectRow" encoding="csharp" triggers="104" row="true"/>
 		<QAction id="80" name="QADeleteRow" encoding="csharp" triggers="80" />
 		<QAction id="90" name="QAStateCycle" encoding="csharp" triggers="90" />
+		<QAction id="40" name="QAToJSON" encoding="csharp" triggers="40">
+		</QAction>
 	</QActions>
 
 	<Groups>

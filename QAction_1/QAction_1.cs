@@ -3,9 +3,13 @@ namespace Skyline.Protocol
 	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
-	using System.Text;
 
-	using Skyline.DataMiner.Scripting;
+    using System.IO;
+    using System.Text;
+
+    using System.Web.Script.Serialization;
+
+    using Skyline.DataMiner.Scripting;
     using SLNetMessages = Skyline.DataMiner.Net.Messages;
 
     /// kept the usual default names assigned by commmon template
@@ -13,15 +17,17 @@ namespace Skyline.Protocol
     {
         public static class MyCommons
         {
-			public static TbleventsoverviewQActionRow CreateEventRow(string primaryKey, string eventName, int eventState)
+			public static TbleventsoverviewQActionRow CreateEventRow(this SLProtocolExt protocol, string primaryKey, string eventName, int eventState)
 			{
+                protocol.Log($"Function CreateEventRow|Run|Executing Function", LogType.DebugInfo, LogLevel.NoLogging);
 
-				TbleventsoverviewQActionRow row = new TbleventsoverviewQActionRow
+                TbleventsoverviewQActionRow row = new TbleventsoverviewQActionRow
 				{
 					Coleventsoverviewinstance_101 = primaryKey,
 					Coleventsoverviewname_102 = eventName,
 					Coleventsoverviewstatus_103 = eventState,
-				};
+                    Coleventsselectbutton_104 = 1,
+                };
 
 				return row;
 			}
@@ -47,6 +53,7 @@ namespace Skyline.Protocol
             /// </exception>
             public static object[] GetColumns(this SLProtocol protocol, int tablePid, uint[] columnsIdx)
             {
+                protocol.Log($"Function GetColumns|Run|Executing Function", LogType.DebugInfo, LogLevel.NoLogging);
                 object[] columnsRawData = (object[])protocol.NotifyProtocol((int)SLNetMessages.NotifyType.NT_GET_TABLE_COLUMNS, tablePid, columnsIdx);
                 if (columnsRawData == null || columnsRawData.Length != columnsIdx.Length)
                 {
@@ -55,6 +62,73 @@ namespace Skyline.Protocol
 
                 return columnsRawData;
             }
+
+            public static void ToJSON(this SLProtocolExt protocol, int tablePid, string fileName = "MyJSON.json")
+            {
+                var serializer = new JavaScriptSerializer();
+                Dictionary<string, object[]> dict = new Dictionary<string, object[]>();
+
+                try
+                {
+                    protocol.Log($"Function ToJSON|Run|Executing Function", LogType.DebugInfo, LogLevel.NoLogging);
+
+                    string[] keys = protocol.GetKeys(tablePid);
+                    object[] currentRow;
+
+                    foreach (string key in keys)
+                    {
+                        currentRow = protocol.tbleventsoverview.GetRow(key);
+                        dict.Add(key, currentRow);
+                    }
+
+                    string serializedData = serializer.Serialize(dict);
+                    ///var deserializedResult = serializer.Deserialize((string)data, typeof(object)) as Dictionary<string, object>;
+
+                    int thisElement = protocol.ElementID;
+                    string file = $"C:\\{thisElement}-{fileName}";
+
+                    WriteFileData(file, serializedData);
+
+                }
+                catch (Exception e)
+                {
+                    protocol.Log("QA" + protocol.QActionID + "|Run|An unexpected error occurred during deserialization of JSON data: " + e.ToString(), LogType.Error, LogLevel.NoLogging);
+                }
+            }
+
+            public static void WriteFileData(string file, string data)
+            {
+                using (FileStream logWriter = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    using (StreamWriter sw = new StreamWriter(logWriter, Encoding.Default))
+                    {
+                        sw.Write(data);
+                    }
+                }
+                
+            }
+
+            public static string GetFileData(string file)
+            {
+                List<string> lines = new List<string>();
+
+                if (File.Exists(file))
+                {
+
+                    using (FileStream logReader = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    {
+                        using (StreamReader sr = new StreamReader(logReader, Encoding.Default))
+                        {
+                            while (!sr.EndOfStream)
+                            {
+                                lines.Add(sr.ReadLine());
+                            }
+                        }
+                    }
+                }
+                return String.Join("\n", lines);
+            }
+
 
         }
 

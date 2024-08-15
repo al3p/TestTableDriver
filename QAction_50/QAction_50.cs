@@ -32,10 +32,10 @@ public static class QAction
 
             List<object[]> allRows = new List<object[]>
 			{
-				MyCommons.CreateEventRow("1", "House of dragons",       GetRandomEventState()).ToObjectArray(),
-				MyCommons.CreateEventRow("2", "The lords of the rings", GetRandomEventState()).ToObjectArray(),
-				MyCommons.CreateEventRow("3", "A song of ice and fire", GetRandomEventState()).ToObjectArray(),
-				MyCommons.CreateEventRow("4", "Harry Potter",           GetRandomEventState()).ToObjectArray(),
+				MyCommons.CreateEventRow(protocol, "1", "House of dragons",       GetRandomEventState()).ToObjectArray(),
+				MyCommons.CreateEventRow(protocol, 	"2", "The lords of the rings", GetRandomEventState()).ToObjectArray(),
+				MyCommons.CreateEventRow(protocol, "3", "A song of ice and fire", GetRandomEventState()).ToObjectArray(),
+				MyCommons.CreateEventRow(protocol, "4", "Harry Potter",           GetRandomEventState()).ToObjectArray(),
 			};
 
 			/// object FillArray(int 'The ID of the table parameter', List<object[]> 'The rows of the table', NotifyProtocol.SaveOption option)
