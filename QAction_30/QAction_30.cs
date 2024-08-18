@@ -4,9 +4,11 @@ using System.Globalization;
 using System.Text;
 
 using Skyline.DataMiner.Scripting;
+using Skyline.Protocol.MyExtension;
+
 
 /// <summary>
-/// DataMiner QAction Class: QADeleteRow.
+/// DataMiner QAction Class: QAFromJSON.
 /// </summary>
 public static class QAction
 {
@@ -19,11 +21,9 @@ public static class QAction
 		try
 		{
             protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Executing QAction", LogType.DebugInfo, LogLevel.NoLogging);
-            string tableRowKey = protocol.Fieldeventsoverviewinstance_111.ToString();
-            protocol.tbleventsoverview.DeleteRow(tableRowKey);
-
-		}
-		catch (Exception ex)
+            MyCommons.FromJSON(protocol, protocol.tbleventsoverview, true);
+        }
+        catch (Exception ex)
 		{
 			protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Exception thrown:{Environment.NewLine}{ex}", LogType.Error, LogLevel.NoLogging);
 		}

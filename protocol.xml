@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <!--
 This driver/protocol/connector is written from scratch based on standard code snippets.
@@ -30,7 +30,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 	<DeviceOID>0000</DeviceOID>
 	<ElementType></ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General" wideColumnPages=""/>
+	<Display defaultPage="General" pageOrder="General" wideColumnPages="General" />
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
@@ -55,7 +55,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			<!-- index="0" means the first column is the one containing the primary key identifying the table entry
 			     "naming=/102" means the param 102 (the second column) is the display key - used e.g. for alarms to display and filter. -->
 			<ArrayOptions index="0" options=";naming=/102">
-				<ColumnOption idx="0" pid="101" type="retrieved" options=""/>
+				<ColumnOption idx="0" pid="101" type="retrieved" options="" />
 				<ColumnOption idx="1" pid="102" type="retrieved" options="" />
 				<ColumnOption idx="2" pid="103" type="retrieved" options=";save" />
 				<ColumnOption idx="3" pid="104" type="retrieved" options="" />
@@ -284,7 +284,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 					<Position>
 						<Page>General</Page>
 						<Column>1</Column>
-						<Row>8</Row>
+						<Row>9</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -319,7 +319,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 					<Position>
 						<Page>General</Page>
 						<Column>1</Column>
-						<Row>9</Row>
+						<Row>10</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -363,6 +363,41 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<Discreets>
 					<Discreet>
 						<Display>To JSON</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		
+		<!-- button to serialize to a json file the table content 
+		     fires trigger -> QAction -->
+		<Param id="30">
+			<Name>btnJSONImport</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Push to load table rows from a JSON file</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>7</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>From JSON</Display>
 						<Value>1</Value>
 					</Discreet>
 				</Discreets>
@@ -474,7 +509,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Measurement>
 		</Param>
 		
-		<!-- third last column -->
+		<!-- third column -->
 		<Param id="113" trending="false">
 			<Name>fieldEventsOverviewStatus</Name>
 			<Description>Status to set</Description>
@@ -486,7 +521,8 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
-				<DefaultValue>0</DefaultValue>  <!-- Pending -->
+				<DefaultValue>0</DefaultValue>
+				<!-- Pending -->
 			</Interprete>
 			<Alarm>
 				<Monitored>false</Monitored>
@@ -639,33 +675,101 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			</Measurement>
 		</Param>
 		
-		
 		<!-- Row Fields set ends ................................................... -->
 
-		<!-- Dummy param for state cycling ......................................... -->
+		<!-- Dummy param for state cycling 
+		     only used to fire QAction 90 on trigger 90 -> action 90 ............... -->
 		<Param id="90">
 			<Name>DmyStateCycle</Name>
 			<Description>Dummy to drive state cycle</Description>
 			<Type>dummy</Type>
 		</Param>
+		<Param id="91" trending="false">
+			<Name>ToggleStateCycle</Name>
+			<Description>State Cycle</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
 		
-		
+		<!-- button to toggle the state cycling 
+			 fires QAction to change the value of param 91-->
+		<Param id="92">
+			<Name>btnToggleStateCycle</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Push to toggle state cycle</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>1</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>State Cycle</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
 		
 	</Params>
 
 	<QActions>
 	    <!-- first QAcrion is to host common code that can be called in different othe QActions -->
 		<!-- <ProjectReference Include="..\QAction_1\QAction_1.csproj" />  -->
-		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" dllImport="System.Web.Extensions.dll"/>
+		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" dllImport="System.Web.Extensions.dll" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 		
-		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50"/>
-		<QAction id="70" name="QAAddFieldsTable" encoding="csharp" triggers="70"/>
-		<QAction id="104" name="QASelectRow" encoding="csharp" triggers="104" row="true"/>
+		<QAction id="50" name="QAPopulateTable" encoding="csharp" triggers="50" />
+		<QAction id="70" name="QAAddFieldsTable" encoding="csharp" triggers="70" />
+		<QAction id="104" name="QASelectRow" encoding="csharp" triggers="104" row="true" />
 		<QAction id="80" name="QADeleteRow" encoding="csharp" triggers="80" />
 		<QAction id="90" name="QAStateCycle" encoding="csharp" triggers="90" />
-		<QAction id="40" name="QAToJSON" encoding="csharp" triggers="40">
-		</QAction>
+		<QAction id="40" name="QAToJSON" encoding="csharp" triggers="40" />
+		<QAction id="30" name="QAFromJSON" encoding="csharp" triggers="30" />
+		<QAction id="92" name="QActionName" encoding="csharp" triggers="92"/>
 	</QActions>
 
 	<Groups>
@@ -681,10 +785,12 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 			<Name>GrpStateCycle</Name>
 			<Description>Drives state cycles</Description>
 			<Type>poll action</Type>
+			<Condition><![CDATA[(id:91 == 1)]]></Condition>
 			<Content>
 				<Action>90</Action>
 			</Content>
 		</Group>
+	
 	</Groups>
 
 	<Triggers>

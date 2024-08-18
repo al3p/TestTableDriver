@@ -6,7 +6,7 @@ using System.Text;
 using Skyline.DataMiner.Scripting;
 
 /// <summary>
-/// DataMiner QAction Class: QADeleteRow.
+/// DataMiner QAction Class: QActionName.
 /// </summary>
 public static class QAction
 {
@@ -19,8 +19,9 @@ public static class QAction
 		try
 		{
             protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Executing QAction", LogType.DebugInfo, LogLevel.NoLogging);
-            string tableRowKey = protocol.Fieldeventsoverviewinstance_111.ToString();
-            protocol.tbleventsoverview.DeleteRow(tableRowKey);
+
+            int val = Convert.ToInt32(protocol.Togglestatecycle);
+			protocol.Togglestatecycle = (val + 1) % 2;
 
 		}
 		catch (Exception ex)

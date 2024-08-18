@@ -9,6 +9,7 @@ using SLNetMessages = Skyline.DataMiner.Net.Messages;
 
 /// <summary>
 /// DataMiner QAction Class: QAStateCycle.
+/// Advance the state of every entry in the table
 /// </summary>
 public static class QAction
 {
@@ -27,7 +28,12 @@ public static class QAction
             object[] keyCol = (object[])columns[0];
             object[] valueCol = (object[])columns[1];
             string[] strKeyCol = new string[keyCol.Length];
- 
+
+            if (valueCol == null || valueCol.Length <= 0)
+            {
+                return;
+            }
+
             for (uint i = 0; i < valueCol.Length; i++)
             {
                 valueCol[i] = (((Convert.ToUInt32(valueCol[i])) + 1) % 4);

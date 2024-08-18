@@ -8,6 +8,11 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
+	/// <summary>PID: 91 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int togglestatecycle_91 = 91;
+	/// <summary>PID: 91 | Type: read</summary>
+	public const int togglestatecycle = 91;
 	/// <summary>PID: 111 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int fieldeventsoverviewinstance_111 = 111;
@@ -25,6 +30,11 @@ public static class Parameter
 	public const int fieldeventsoverviewstatus = 113;
 	public class Write
 	{
+		/// <summary>PID: 30 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int btnjsonimport_30 = 30;
+		/// <summary>PID: 30 | Type: write</summary>
+		public const int btnjsonimport = 30;
 		/// <summary>PID: 40 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int btnjsonserialize_40 = 40;
@@ -50,6 +60,11 @@ public static class Parameter
 		public const int btnfielddeleterow_80 = 80;
 		/// <summary>PID: 80 | Type: write</summary>
 		public const int btnfielddeleterow = 80;
+		/// <summary>PID: 92 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int btntogglestatecycle_92 = 92;
+		/// <summary>PID: 92 | Type: write</summary>
+		public const int btntogglestatecycle = 92;
 		/// <summary>PID: 201 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int coleventsoverviewinstance_201 = 201;
@@ -137,6 +152,8 @@ public static class Parameter
 }
 public class WriteParameters
 {
+	/// <summary>PID: 30  | Type: write | DISCREETS: From JSON = 1</summary>
+	public System.Object Btnjsonimport {get { return Protocol.GetParameter(30); }set { Protocol.SetParameter(30, value); }}
 	/// <summary>PID: 40  | Type: write | DISCREETS: To JSON = 1</summary>
 	public System.Object Btnjsonserialize {get { return Protocol.GetParameter(40); }set { Protocol.SetParameter(40, value); }}
 	/// <summary>PID: 50  | Type: write | DISCREETS: Populate Static = 1</summary>
@@ -147,6 +164,8 @@ public class WriteParameters
 	public System.Object Btnfieldpopulatetable {get { return Protocol.GetParameter(70); }set { Protocol.SetParameter(70, value); }}
 	/// <summary>PID: 80  | Type: write | DISCREETS: Delete row = 1</summary>
 	public System.Object Btnfielddeleterow {get { return Protocol.GetParameter(80); }set { Protocol.SetParameter(80, value); }}
+	/// <summary>PID: 92  | Type: write | DISCREETS: State Cycle = 1</summary>
+	public System.Object Btntogglestatecycle {get { return Protocol.GetParameter(92); }set { Protocol.SetParameter(92, value); }}
 	/// <summary>PID: 104  | Type: write | DISCREETS: = = 1</summary>
 	public System.Object Coleventsselectbutton {get { return Protocol.GetParameter(104); }set { Protocol.SetParameter(104, value); }}
 	/// <summary>PID: 201  | Type: write</summary>
@@ -172,6 +191,8 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 100</summary>
 	TbleventsoverviewQActionTable tbleventsoverview { get; set; }
 	object Afterstartup_dummy { get; set; }
+	object Btnjsonimport_30 { get; set; }
+	object Btnjsonimport { get; set; }
 	object Btnjsonserialize_40 { get; set; }
 	object Btnjsonserialize { get; set; }
 	object Btnstaticpopulatetable_50 { get; set; }
@@ -183,6 +204,10 @@ public interface SLProtocolExt : SLProtocol
 	object Btnfielddeleterow_80 { get; set; }
 	object Btnfielddeleterow { get; set; }
 	object Dmystatecycle_dummy { get; set; }
+	object Togglestatecycle_91 { get; set; }
+	object Togglestatecycle { get; set; }
+	object Btntogglestatecycle_92 { get; set; }
+	object Btntogglestatecycle { get; set; }
 	object Coleventsoverviewinstance_101 { get; set; }
 	object Coleventsoverviewinstance { get; set; }
 	object Coleventsoverviewname_102 { get; set; }
@@ -211,6 +236,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public TbleventsoverviewQActionTable tbleventsoverview { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
+	/// <summary>PID: 30  | Type: write | DISCREETS: From JSON = 1</summary>
+	public System.Object Btnjsonimport_30 {get { return GetParameter(30); }set { SetParameter(30, value); }}
+	/// <summary>PID: 30  | Type: write | DISCREETS: From JSON = 1</summary>
+	public System.Object Btnjsonimport {get { return Write.Btnjsonimport; }set { Write.Btnjsonimport = value; }}
 	/// <summary>PID: 40  | Type: write | DISCREETS: To JSON = 1</summary>
 	public System.Object Btnjsonserialize_40 {get { return GetParameter(40); }set { SetParameter(40, value); }}
 	/// <summary>PID: 40  | Type: write | DISCREETS: To JSON = 1</summary>
@@ -233,6 +262,15 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Btnfielddeleterow {get { return Write.Btnfielddeleterow; }set { Write.Btnfielddeleterow = value; }}
 	/// <summary>PID: 90  | Type: dummy</summary>
 	public System.Object Dmystatecycle_dummy {get { return GetParameter(90); }set { SetParameter(90, value); }}
+	/// <summary>PID: 91  | Type: read | DISCREETS: Off = 0, On = 1</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Togglestatecycle_91 {get { return GetParameter(91); }set { SetParameter(91, value); }}
+	/// <summary>PID: 91  | Type: read | DISCREETS: Off = 0, On = 1</summary>
+	public System.Object Togglestatecycle {get { return GetParameter(91); }set { SetParameter(91, value); }}
+	/// <summary>PID: 92  | Type: write | DISCREETS: State Cycle = 1</summary>
+	public System.Object Btntogglestatecycle_92 {get { return GetParameter(92); }set { SetParameter(92, value); }}
+	/// <summary>PID: 92  | Type: write | DISCREETS: State Cycle = 1</summary>
+	public System.Object Btntogglestatecycle {get { return Write.Btntogglestatecycle; }set { Write.Btntogglestatecycle = value; }}
 	/// <summary>PID: 101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Coleventsoverviewinstance_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}

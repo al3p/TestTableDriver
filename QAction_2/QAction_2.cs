@@ -7,6 +7,7 @@ using Skyline.DataMiner.Scripting;
 
 /// <summary>
 /// DataMiner QAction Class: After Startup.
+/// Nothing to see here. Standard things
 /// </summary>
 public static class QAction
 {

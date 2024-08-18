@@ -1,13 +1,16 @@
 namespace Skyline.Protocol
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Globalization;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
 
     using System.IO;
+    using System.Linq;
+    using System.Runtime.Remoting.Messaging;
     using System.Text;
 
     using System.Web.Script.Serialization;
+
 
     using Skyline.DataMiner.Scripting;
     using SLNetMessages = Skyline.DataMiner.Net.Messages;
@@ -17,20 +20,20 @@ namespace Skyline.Protocol
     {
         public static class MyCommons
         {
-			public static TbleventsoverviewQActionRow CreateEventRow(this SLProtocolExt protocol, string primaryKey, string eventName, int eventState)
-			{
+            public static TbleventsoverviewQActionRow CreateEventRow(this SLProtocolExt protocol, string primaryKey, string eventName, int eventState)
+            {
                 protocol.Log($"Function CreateEventRow|Run|Executing Function", LogType.DebugInfo, LogLevel.NoLogging);
 
                 TbleventsoverviewQActionRow row = new TbleventsoverviewQActionRow
-				{
-					Coleventsoverviewinstance_101 = primaryKey,
-					Coleventsoverviewname_102 = eventName,
-					Coleventsoverviewstatus_103 = eventState,
+                {
+                    Coleventsoverviewinstance_101 = primaryKey,
+                    Coleventsoverviewname_102 = eventName,
+                    Coleventsoverviewstatus_103 = eventState,
                     Coleventsselectbutton_104 = 1,
                 };
 
-				return row;
-			}
+                return row;
+            }
 
             /// <summary>
             /// Get columns from table.
@@ -51,7 +54,7 @@ namespace Skyline.Protocol
             /// <exception>
             /// Thrown when incomplete data are fetched
             /// </exception>
-            public static object[] GetColumns(this SLProtocol protocol, int tablePid, uint[] columnsIdx)
+			public static object[] GetColumns(this SLProtocol protocol, int tablePid, uint[] columnsIdx)
             {
                 protocol.Log($"Function GetColumns|Run|Executing Function", LogType.DebugInfo, LogLevel.NoLogging);
                 object[] columnsRawData = (object[])protocol.NotifyProtocol((int)SLNetMessages.NotifyType.NT_GET_TABLE_COLUMNS, tablePid, columnsIdx);
@@ -63,25 +66,23 @@ namespace Skyline.Protocol
                 return columnsRawData;
             }
 
-            public static void ToJSON(this SLProtocolExt protocol, int tablePid, string fileName = "MyJSON.json")
+            public static void ToJSON(this SLProtocolExt protocol, QActionTable table, string fileName = "MyJSON.json")
             {
                 var serializer = new JavaScriptSerializer();
-                Dictionary<string, object[]> dict = new Dictionary<string, object[]>();
 
                 try
                 {
                     protocol.Log($"Function ToJSON|Run|Executing Function", LogType.DebugInfo, LogLevel.NoLogging);
 
-                    string[] keys = protocol.GetKeys(tablePid);
-                    object[] currentRow;
+                    string[] keys = protocol.GetKeys(table.TableId);
+                    List<object[]> rowList = new List<object[]>();
 
                     foreach (string key in keys)
                     {
-                        currentRow = protocol.tbleventsoverview.GetRow(key);
-                        dict.Add(key, currentRow);
+                        rowList.Add(table.GetRow(key));
                     }
 
-                    string serializedData = serializer.Serialize(dict);
+                    string serializedData = serializer.Serialize(rowList);
                     ///var deserializedResult = serializer.Deserialize((string)data, typeof(object)) as Dictionary<string, object>;
 
                     int thisElement = protocol.ElementID;
@@ -92,7 +93,45 @@ namespace Skyline.Protocol
                 }
                 catch (Exception e)
                 {
-                    protocol.Log("QA" + protocol.QActionID + "|Run|An unexpected error occurred during deserialization of JSON data: " + e.ToString(), LogType.Error, LogLevel.NoLogging);
+                    protocol.Log("QA" + protocol.QActionID + "|ERR|An unexpected error occurred during serialization of JSON data: " + e.ToString(), LogType.Error, LogLevel.NoLogging);
+                }
+            }
+
+            public static void FromJSON(this SLProtocolExt protocol, QActionTable table, bool clean, string fileName = "MyJSON.json")
+            {
+                var serializer = new JavaScriptSerializer();
+
+                try
+                {
+                    protocol.Log($"Function FromJSON|Run|Executing Function", LogType.DebugInfo, LogLevel.NoLogging);
+
+                    int thisElement = protocol.ElementID;
+                    string file = $"C:\\{thisElement}-{fileName}";
+
+                    string serializedData = GetFileData(file);
+                    var deserializedResult = serializer.Deserialize(serializedData, typeof(List<object[]>)) as List<object[]>;
+
+                    if (deserializedResult != null)
+                    {
+                        if (clean)
+                        {
+                            protocol.ClearAllKeys(table.TableId);
+                        }
+                        foreach (object[] currentRow in deserializedResult)
+                        {
+                            table.AddRow(currentRow);
+                        }
+                    }
+                    else
+                    {
+                        protocol.Log($"Function FromJSON|DBG|null after deserialization", LogType.DebugInfo, LogLevel.NoLogging);
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    protocol.Log("QA" + protocol.QActionID + "|ERR|An unexpected error occurred during deserialization of JSON data: " + e.ToString(), LogType.Error, LogLevel.NoLogging);
                 }
             }
 
@@ -105,7 +144,6 @@ namespace Skyline.Protocol
                         sw.Write(data);
                     }
                 }
-                
             }
 
             public static string GetFileData(string file)
@@ -133,4 +171,5 @@ namespace Skyline.Protocol
         }
 
     }
+
 }

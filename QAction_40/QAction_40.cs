@@ -8,11 +8,12 @@ using Skyline.Protocol.MyExtension;
 
 /// <summary>
 /// DataMiner QAction Class: QAToJSON.
+/// Save the table with into the required file (the default used here)
 /// </summary>
 public static class QAction
 {
 	/// <summary>
-	/// The QAction entry point.
+	/// Entry point: just call the common function with the required parameters
 	/// </summary>
 	/// <param name="protocol">Link with SLProtocol process.</param>
 	public static void Run(SLProtocolExt protocol)
@@ -20,7 +21,7 @@ public static class QAction
 		try
 		{
             protocol.Log($"QA{protocol.QActionID}|{protocol.GetTriggerParameter()}|Run|Executing QAction", LogType.DebugInfo, LogLevel.NoLogging);
-			MyCommons.ToJSON(protocol, Parameter.Tbleventsoverview.tablePid);
+			MyCommons.ToJSON(protocol, protocol.tbleventsoverview);
         }
         catch (Exception ex)
 		{
