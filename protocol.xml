@@ -678,7 +678,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<!-- Row Fields set ends ................................................... -->
 
 		<!-- Dummy param for state cycling 
-		     only used to fire QAction 90 on trigger 90 -> action 90 ............... -->
+		     only used to fire QAction 90 on trigger 90 -> action 90 -->
 		<Param id="90">
 			<Name>DmyStateCycle</Name>
 			<Description>Dummy to drive state cycle</Description>
@@ -769,7 +769,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<QAction id="90" name="QAStateCycle" encoding="csharp" triggers="90" />
 		<QAction id="40" name="QAToJSON" encoding="csharp" triggers="40" />
 		<QAction id="30" name="QAFromJSON" encoding="csharp" triggers="30" />
-		<QAction id="92" name="QActionName" encoding="csharp" triggers="92"/>
+		<QAction id="92" name="QToggleCycleStatus" encoding="csharp" triggers="92"/>
 	</QActions>
 
 	<Groups>
