@@ -687,7 +687,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 		<Param id="91" trending="false">
 			<Name>ToggleStateCycle</Name>
 			<Description>State Cycle</Description>
-			<Type>read</Type>
+			<Type>write</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
 				<Type>double</Type>
@@ -757,7 +757,7 @@ NuGet package "Skyline.DataMiner.Dev.Protocol": 10.2.0.25
 	</Params>
 
 	<QActions>
-	    <!-- first QAcrion is to host common code that can be called in different othe QActions -->
+	    <!-- first QAction is to host common code that can be called in different other QActions -->
 		<!-- <ProjectReference Include="..\QAction_1\QAction_1.csproj" />  -->
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" dllImport="System.Web.Extensions.dll" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />

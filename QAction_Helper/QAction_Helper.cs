@@ -8,11 +8,6 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
-	/// <summary>PID: 91 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int togglestatecycle_91 = 91;
-	/// <summary>PID: 91 | Type: read</summary>
-	public const int togglestatecycle = 91;
 	/// <summary>PID: 111 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int fieldeventsoverviewinstance_111 = 111;
@@ -60,6 +55,11 @@ public static class Parameter
 		public const int btnfielddeleterow_80 = 80;
 		/// <summary>PID: 80 | Type: write</summary>
 		public const int btnfielddeleterow = 80;
+		/// <summary>PID: 91 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int togglestatecycle_91 = 91;
+		/// <summary>PID: 91 | Type: write</summary>
+		public const int togglestatecycle = 91;
 		/// <summary>PID: 92 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int btntogglestatecycle_92 = 92;
@@ -164,6 +164,8 @@ public class WriteParameters
 	public System.Object Btnfieldpopulatetable {get { return Protocol.GetParameter(70); }set { Protocol.SetParameter(70, value); }}
 	/// <summary>PID: 80  | Type: write | DISCREETS: Delete row = 1</summary>
 	public System.Object Btnfielddeleterow {get { return Protocol.GetParameter(80); }set { Protocol.SetParameter(80, value); }}
+	/// <summary>PID: 91  | Type: write | DISCREETS: Off = 0, On = 1</summary>
+	public System.Object Togglestatecycle {get { return Protocol.GetParameter(91); }set { Protocol.SetParameter(91, value); }}
 	/// <summary>PID: 92  | Type: write | DISCREETS: State Cycle = 1</summary>
 	public System.Object Btntogglestatecycle {get { return Protocol.GetParameter(92); }set { Protocol.SetParameter(92, value); }}
 	/// <summary>PID: 104  | Type: write | DISCREETS: = = 1</summary>
@@ -262,11 +264,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Btnfielddeleterow {get { return Write.Btnfielddeleterow; }set { Write.Btnfielddeleterow = value; }}
 	/// <summary>PID: 90  | Type: dummy</summary>
 	public System.Object Dmystatecycle_dummy {get { return GetParameter(90); }set { SetParameter(90, value); }}
-	/// <summary>PID: 91  | Type: read | DISCREETS: Off = 0, On = 1</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
+	/// <summary>PID: 91  | Type: write | DISCREETS: Off = 0, On = 1</summary>
 	public System.Object Togglestatecycle_91 {get { return GetParameter(91); }set { SetParameter(91, value); }}
-	/// <summary>PID: 91  | Type: read | DISCREETS: Off = 0, On = 1</summary>
-	public System.Object Togglestatecycle {get { return GetParameter(91); }set { SetParameter(91, value); }}
+	/// <summary>PID: 91  | Type: write | DISCREETS: Off = 0, On = 1</summary>
+	public System.Object Togglestatecycle {get { return Write.Togglestatecycle; }set { Write.Togglestatecycle = value; }}
 	/// <summary>PID: 92  | Type: write | DISCREETS: State Cycle = 1</summary>
 	public System.Object Btntogglestatecycle_92 {get { return GetParameter(92); }set { SetParameter(92, value); }}
 	/// <summary>PID: 92  | Type: write | DISCREETS: State Cycle = 1</summary>
